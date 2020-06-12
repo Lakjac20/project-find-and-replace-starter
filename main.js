@@ -15,33 +15,28 @@ const rowElements = document.querySelectorAll(".row")
 // Call this function from WITHIN your row elements loop. Then you will, in turn,
 // need to loop over the resulting cell elements. But where should this whole
 // NESTED LOOP go? Think through the user's experience: when should WHAT happen? 
-function getCellElements (currentRowElement) {
+function getCellElements(currentRowElement) {
     return currentRowElement.querySelectorAll(".cell")
 }
 
 
 
 // YOUR CODE GOES HERE
-replaceAllButton.addEventListener('click', function (){
-
-let fI= findInput.value
-let rI= replaceInput.value
-    for (let titles = 0; titles < rowElements.length; titles ++){
-        let cRow = rowElements[titles]
-        console.log(cRow)
-       let cellElements = getCellElements(cRow)
-    for (let info = 0; info < cellElements.length; info ++)
-         let cRCellElement = cellElements[info]
-     console.log(cRCellElement)
-     
+replaceAllButton.addEventListener("click", function () {
+    let findValue = findInput.value
+    let replaceValue = replaceInput.value
+    for (let outer = 0; outer < rowElements.length; outer += 1) {
+        currRow = rowElements[outer]
+        let currCellElements = getCellElements(currRow)
+        for (let inner = 0; inner < currCellElements.length; inner += 1) {
+            let currentElement = currCellElements[inner]
+            if (currentElement.innerHTML.includes(findValue)) {
+                currentElement.innerHTML = currentElement.innerHTML.replace(findValue, replaceValue)
+            }
+        }
     }
-
-if (cellElements.innerHTML.includes(fI)){
-    cellElements.innerHTML.replace(fI, rI)
-}
-
-
 })
+
 
 
 // One last thing: dedicate very careful attention to using variables and
@@ -66,3 +61,5 @@ if (cellElements.innerHTML.includes(fI)){
 //         console.log(element[index]);
 //     }
 // }
+
+
