@@ -30,7 +30,7 @@ replaceAllButton.addEventListener("click", function () {
         let currCellElements = getCellElements(currRow)
         for (let inner = 0; inner < currCellElements.length; inner += 1) {
             let currentElement = currCellElements[inner]
-            if (currentElement.innerHTML.includes(findValue)) {
+            while (currentElement.innerHTML.includes(findValue)) {
                 currentElement.innerHTML = currentElement.innerHTML.replace(findValue, replaceValue)
             }
         }
